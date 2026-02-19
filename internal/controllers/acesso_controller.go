@@ -68,3 +68,23 @@ func (c *AcessoController) CreateContaPf(ctx echo.Context) error {
 	})
 
 }
+
+func (c *AcessoController) CreateContaPfj(ctx echo.Context) error {
+	req := new(services.CreateContaPjRequest)
+
+	if err := ctx.Bind(req); err != nil {
+		return ctx.JSON(http.StatusBadRequest, map[string]string{"error": "invalid body"})
+	}
+
+	if err := c.service.CriarContaPj(req); err != nil {
+		return ctx.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"error":  "db error",
+			"detail": err.Error(),
+		})
+	}
+
+	return ctx.JSON(http.StatusOK, map[string]string{
+		"status": "created",
+	})
+
+}

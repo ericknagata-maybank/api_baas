@@ -69,3 +69,8 @@ func (s *AcessoService) CriarContaPf(req *CreateContaPfRequest) error {
 
 	return s.repo.Create(pf)
 }
+
+func (s *AcessoService) CriarContaPj(req *CreateContaPjRequest) error {
+	// Implementação similar à CriarContaPf, adaptada para os campos de PJ
+	return nil
+}
